@@ -1,4 +1,4 @@
-from src.dinterface.iam_handwriting_db import convert_to_gan_reading_format_save
+from dinterface.iam_handwriting_db import convert_to_gan_reading_format_save
 
 
 def init_reading(train_input, train_output, target_size, bucket_size):
