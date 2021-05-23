@@ -8,10 +8,10 @@ import gin
 import numpy as np
 import tensorflow as tf
 
-from src.bigacgan.arch_ops import spectral_norm
-from src.bigacgan.data_utils import load_prepare_data, train, make_gif, load_random_word_list
-from src.bigacgan.net_architecture import make_generator, make_discriminator, make_recognizer, make_gan
-from src.bigacgan.net_loss import hinge, not_saturating
+from bigacgan.arch_ops import spectral_norm
+from bigacgan.data_utils import load_prepare_data, train, make_gif, load_random_word_list
+from bigacgan.net_architecture import make_generator, make_discriminator, make_recognizer, make_gan
+from bigacgan.net_loss import hinge, not_saturating
 
 gin.external_configurable(hinge)
 gin.external_configurable(not_saturating)
