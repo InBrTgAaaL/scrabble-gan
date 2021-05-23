@@ -2,8 +2,8 @@ import os
 
 import tensorflow as tf
 from tensorflow.keras import layers
-from src.bigacgan.arch_ops import NonLocalBlock, SpatialEmbedding
-from src.bigacgan.resnet_ops import ResNetBlockUp, ResNetBlockDown
+from bigacgan.arch_ops import NonLocalBlock, SpatialEmbedding
+from bigacgan.resnet_ops import ResNetBlockUp, ResNetBlockDown
 
 
 def make_recognizer(input_dim, sequence_length, output_classes, gen_path, vis_model=True):
