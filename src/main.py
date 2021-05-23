@@ -17,7 +17,7 @@ gin.external_configurable(hinge)
 gin.external_configurable(not_saturating)
 gin.external_configurable(spectral_norm)
 
-from src.dinterface.dinterface import init_reading
+from dinterface.dinterface import init_reading
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
