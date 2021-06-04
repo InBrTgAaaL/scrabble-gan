@@ -9,7 +9,7 @@ import tensorflow as tf
 import imageio
 import matplotlib.pyplot as plt
 import random
-
+import glob
 
 def load_prepare_data(input_dim, batch_size, reading_dir, char_vector, bucket_size):
     """
@@ -32,14 +32,14 @@ def load_prepare_data(input_dim, batch_size, reading_dir, char_vector, bucket_si
     data_buckets = {}
     bucket_weights = {}
     number_samples = 0
-
+    paths = [x[0] for x in os.walk('/content/scrabble-gan/res/data/lamo/words-Reading/')]
     # (1) read buckets into memory
-    for i in range(1, bucket_size + 1, 1):
+    for path in paths:
 
         imgs = []
         labels = []
 
-        reading_dir_bucket = reading_dir + str(i) + '/'
+        reading_dir_bucket = path + '/'
         file_list = os.listdir(reading_dir_bucket)
         file_list = [fi for fi in file_list if fi.endswith(".txt")]
 
@@ -52,7 +52,8 @@ def load_prepare_data(input_dim, batch_size, reading_dir, char_vector, bucket_si
                 labels.append(label)
                 number_samples += 1
 
-        data_buckets[i] = (imgs, labels)
+        print(path.split('/')[-1])
+        data_buckets[path.split('/'[-1])] = (imgs, labels)
 
     # (2) compute bucket_weights
     for i in range(1, bucket_size + 1, 1):
@@ -319,9 +320,10 @@ def load_random_word_list(reading_dir, bucket_size, char_vector):
     :param char_vector:         index of char within charvector represents char encoding
     :return:
     """
-
+    paths = [x[0] for x in os.walk('/content/scrabble-gan/res/data/lamo/words-Reading')]
+    print(len(paths))
     random_words = []
-    for i in range(bucket_size):
+    for i in range(len(paths)):
         random_words.append([])
 
     random_words_path = os.path.dirname(os.path.dirname(os.path.dirname(reading_dir))) + '/'
