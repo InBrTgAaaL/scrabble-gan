@@ -85,7 +85,9 @@ def main():
 
     # reuse this seed + labels overtime to visualize progress in the animated GIF
     seed = tf.random.normal([num_gen, latent_dim])
-    random_bucket_idx = random.randint(4, bucket_size - 1)
+    random_bucket_idx = random.randint(4, 80 - 2)
+    print(len(random_words))
+    print(random_words[random_bucket_idx])
     labels = np.array([random.choice(random_words[random_bucket_idx]) for _ in range(num_gen)], np.int32)
 
     # start training
