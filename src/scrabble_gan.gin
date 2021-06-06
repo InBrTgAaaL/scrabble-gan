@@ -27,11 +27,11 @@ io.gen_imgs_dir = '/res/out/big_ac_gan/images/'
 io.model_dir = '/res/out/big_ac_gan/model/'
 
 # Dataset
-io.input_dim = (32, 160, 1)
+io.input_dim = (32, 490, 1)
 io.buf_size = 80377
 io.n_classes = 52
 io.seq_len = None
-io.bucket_size = 10
-io.raw_dir = '/res/data/iamDB/words/'
-io.read_dir = '/res/data/iamDB/words-Reading/'
-io.char_vec = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+io.bucket_size = 220
+io.raw_dir = '/res/data/lamo/words/'
+io.read_dir = '/res/data/lamo/words-Reading/'
+io.char_vec = 'ءآأؤإئابةتثجحخدذرزسشصضطظعغفقكلمنهوىي َُِْ'
