@@ -45,15 +45,21 @@ def load_prepare_data(input_dim, batch_size, reading_dir, char_vector, bucket_si
 
         for file in file_list:
             with open(reading_dir_bucket + file, 'r', encoding='utf8') as f:
+                x = f.readline()
+                for char in x:
+                  try:
+                    y = char_vector.index(char)
+                  except:
+                    print(char)
                 # 'auto' -> [0, 20, 19, 14]
-                label = [char_vector.index(char) for char in f.readline()]
+                label = [char_vector.index(char) for char in x]
                 img = cv2.imread(os.path.join(reading_dir_bucket, os.path.splitext(file)[0] + '.png'), 0)
                 imgs.append(img)
                 labels.append(label)
                 number_samples += 1
-
+        
         print(path.split('/')[-1])
-        data_buckets[path.split('/'[-1])] = (imgs, labels)
+        data_buckets[path.split('/')[-1]] = (imgs, labels)
 
     # (2) compute bucket_weights
     for i in range(1, bucket_size + 1, 1):
@@ -320,10 +326,13 @@ def load_random_word_list(reading_dir, bucket_size, char_vector):
     :param char_vector:         index of char within charvector represents char encoding
     :return:
     """
-    paths = [x[0] for x in os.walk('/content/scrabble-gan/res/data/lamo/words-Reading')]
-    print(len(paths))
+    # paths = [x[0] for x in os.walk('/content/scrabble-gan/res/data/lamo/words-Reading')]
+    # random_words = []
+    # for i in range(len(paths)):
+    #     random_words.append([])
+
     random_words = []
-    for i in range(len(paths)):
+    for i in range(bucket_size):
         random_words.append([])
 
     random_words_path = os.path.dirname(os.path.dirname(os.path.dirname(reading_dir))) + '/'
@@ -331,7 +340,11 @@ def load_random_word_list(reading_dir, bucket_size, char_vector):
         for word in fi_random_word_list:
             word = word.strip()
             bucket = len(word)
-
+            for char in word:
+                try:
+                    x = char_vector.index(char)
+                except:
+                    print(char)
             if bucket <= bucket_size:
                 random_words[bucket - 1].append([char_vector.index(char) for char in word])
 
